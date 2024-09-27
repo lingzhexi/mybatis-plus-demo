@@ -1,6 +1,7 @@
 package com.atguigu.mp.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 
 @Data

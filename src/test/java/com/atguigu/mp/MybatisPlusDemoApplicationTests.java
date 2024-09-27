@@ -4,6 +4,7 @@ import com.atguigu.mp.entity.User;
 import com.atguigu.mp.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,6 +89,20 @@ class MybatisPlusDemoApplicationTests {
         //调用方法
         List<User> users = userMapper.selectList(wrapper);
         users.forEach(System.out::println);
+    }
+
+    //测试分页
+    @Test
+    public void testSelectPage() {
+        Page<User> page = new Page<>(1, 5);
+        userMapper.selectPage(page, null);
+        page.getRecords().forEach(System.out::println);
+        System.out.println(page.getCurrent()); // 当前页
+        System.out.println(page.getPages());   // 查询列表分页数
+        System.out.println(page.getSize());    // 每页显示条数
+        System.out.println(page.getTotal());   // 查询列表总记录数
+        System.out.println(page.hasNext());	   // 是否有下一页
+        System.out.println(page.hasPrevious());// 是否有上一页
     }
 
 
